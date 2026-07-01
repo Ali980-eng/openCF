@@ -1,0 +1,175 @@
+cfront/test.h
+
+This library provides lightweight test utilities implemented as macros, des[3D[K
+designed to simplify testing in both C and C++. The main purpose of this li[2D[K
+library is to facilitate efficient and effective testing of software applic[6D[K
+applications.
+
+OBJECTS & DATA STRUCTURES
+
+The following objects and data structures are defined within this library:
+
+Macros
+
+CTEST_INIT()
+CTEST_INIT(name): Initializes C test counters, sets the test suite name, [K
+and begins the C test program.
+Parameters:
+ name: Test suite name (string)
+Returns: None
+
+CTEST_SUMMARY()
+CTEST_SUMMARY(): Prints a formatted C test summary to stdout, including p[1D[K
+passed, failed, and total tests.
+Notes: This function is intended for use in conjunction with other test[4D[K
+testing utilities.
+Structs & Classes
+
+TEST_INIT(name) (struct)
+TEST_INIT(name): Initializes C++ test counters, flags, and test name. The[3D[K
+The returned value indicates the number of passes and failures.
+Parameters:
+ name: Test suite name (string)
+Returns: bool (true if no initialization occurred; false otherwise)
+
+TEST_MAIN(name) (function)
+TEST_MAIN(name): Starts a C++ test program main function and initializes [K
+test state. Initializes counters for passed, failed, and total tests.
+Parameters:
+ name: Test suite name (string)
+Returns: int
+
+Functions
+TEST_ASSERT(cond) (function)
+TEST_ASSERT(cond): Evaluates a condition in C++ tests and records failure[7D[K
+failure diagnostics. The function is intended to be used to verify the corr[4D[K
+correctness of individual test cases.
+Parameters:
+ cond: Condition to assert (bool value)
+Returns: None
+
+TEST_COND(cond) (function)
+TEST_COND(cond): Evaluates a boolean condition and updates C++ test count[5D[K
+counters.
+Parameters:
+ cond: Boolean condition to evaluate (bool value)
+
+TEST_RANGE(value, high, low) (function)
+TEST_RANGE(value, high, low): Asserts that a value lies within an inclusi[7D[K
+inclusive range. The function is intended to be used to verify the correctn[8D[K
+correctness of individual test cases.
+Parameters:
+ value: Tested value (any type)
+ high: Upper bound (any type)
+ low: Lower bound (any type)
+Returns: None
+
+TEST_MSG(cond, msg) (function)
+TEST_MSG(cond, msg): Evaluates a condition and prints a failure message i[1D[K
+in C++ tests. The function is intended to be used to verify the correctness[11D[K
+correctness of individual test cases.
+Parameters:
+ cond: Condition to assert (bool value)
+ msg: Failure message (any type)
+Returns: None
+
+TEST_EQU(real, expected) (function)
+TEST_EQU(real, expected): Asserts equality in C++ tests and records diagn[5D[K
+diagnostics on failure. The function is intended to be used to verify the c[1D[K
+correctness of individual test cases.
+Parameters:
+ real: Actual value (any type)
+ expected: Expected value (any type)
+Returns: None
+
+TEST_EQU_MSG(real, expected, msg) (function)
+TEST_EQU_MSG(real, expected, msg): Asserts equality with a failure messag[6D[K
+message in C++ tests. The function is intended to be used to verify the cor[3D[K
+correctness of individual test cases.
+Parameters:
+ real: Actual value (any type)
+ expected: Expected value (any type)
+ msg: Failure message (any type)
+Returns: None
+
+BENCHMARK_MAIN()
+BENCHMARK_MAIN(): Starts a benchmark main function with a lightweight ben[3D[K
+benchmark timer. The function is intended to be used to measure the perform[7D[K
+performance of individual test cases.
+Parameters: None
+
+BENCHMARK_EXIT(PS) (function)
+BENCHMARK_EXIT(PS): Finishes benchmark main and optionally prints a bench[5D[K
+benchmark summary. The function is intended to be used to collect statistic[9D[K
+statistics on the performance of individual test cases.
+Parameters:
+ PS: Print summary flag (bool value)
+Returns: None
+
+Classes
+TEST_INIT(name) (struct)
+TEST_INIT(name): Initializes C++ test counters, flags, and test name. The[3D[K
+The returned value indicates the number of passes and failures.
+Parameters:
+ name: Test suite name (string)
+Returns: bool (true if no initialization occurred; false otherwise)
+
+TEST_MAIN(name) (function)
+TEST_MAIN(name): Starts a C++ test program main function and initializes [K
+test state. Initializes counters for passed, failed, and total tests.
+Parameters:
+ name: Test suite name (string)
+Returns: int
+
+Functions
+TEST_ASSERT(cond) (function)
+TEST_ASSERT(cond): Evaluates a condition in C++ tests and records failure[7D[K
+failure diagnostics. The function is intended to be used to verify the corr[4D[K
+correctness of individual test cases.
+Parameters:
+ cond: Condition to assert (bool value)
+Returns: None
+
+TEST_COND(cond) (function)
+TEST_COND(cond): Evaluates a boolean condition and updates C++ test count[5D[K
+counters.
+Parameters:
+ cond: Boolean condition to evaluate (bool value)
+
+TEST_RANGE(value, high, low) (function)
+TEST_RANGE(value, high, low): Asserts that a value lies within an inclusi[7D[K
+inclusive range. The function is intended to be used to verify the correctn[8D[K
+correctness of individual test cases.
+Parameters:
+ value: Tested value (any type)
+ high: Upper bound (any type)
+ low: Lower bound (any type)
+Returns: None
+
+TEST_MSG(cond, msg) (function)
+TEST_MSG(cond, msg): Evaluates a condition and prints a failure message i[1D[K
+in C++ tests. The function is intended to be used to verify the correctness[11D[K
+correctness of individual test cases.
+Parameters:
+ cond: Condition to assert (bool value)
+ msg: Failure message (any type)
+Returns: None
+
+TEST_EQU(real, expected) (function)
+TEST_EQU(real, expected): Asserts equality in C++ tests and records diagn[5D[K
+diagnostics on failure. The function is intended to be used to verify the c[1D[K
+correctness of individual test cases.
+Parameters:
+ real: Actual value (any type)
+ expected: Expected value (any type)
+Returns: None
+
+TEST_EQU_MSG(real, expected, msg) (function)
+TEST_EQU_MSG(real, expected, msg): Asserts equality with a failure messag[6D[K
+message in C++ tests. The function is intended to be used to verify the cor[3D[K
+correctness of individual test cases.
+Parameters:
+ real: Actual value (any type)
+ expected: Expected value (any type)
+ msg: Failure message (any type)
+Returns: None

@@ -1,0 +1,199 @@
+cfront/structure.h
+Lightweight Structural Helper Macros for C and C++
+
+This library provides lightweight structural helper macros for both C and C++ that are designed to preserve the original logic of the underlying languages.
+The macros are used to simplify common tasks such as main function entrypoints, loop iteration patterns, conditional jumps, memory helpers, etc.
+
+Structure Definitions
+
+ObjectNames
+ObjectName: A struct representing a type or class in C and C++.
+ Member         Type 
+ member_name    (type)  What this member stores/does 
+ another_member (type)  Description 
+Example Usage:
+typedef struct ObjectName {
+    int x;
+    char* str;
+} ExampleObjectName;
+ExampleObjectName example_obj;
+example_obj.x = 10;
+example_obj.str = "Hello";
+
+Functions
+Main Function Macros
+frontMainExit: Define a minimal main function that immediately returns 0.
+frontMain: Define a main function with argc/argv parameters.
+Example Usage:
+int main(int argc, char* argv[]) {
+    // ...
+}
+
+Main Function Without Parameters
+frontMain: Define a main function without parameters.
+Example Usage:
+int main() {
+    // ...
+}
+
+Return Value Macro
+frontRet: Return a value from main and close the function body.
+Returns: A return value of type type with value \0.
+Example Usage:
+int result = frontRet(42);
+// ...
+return result;
+
+Loop Macros
+
+Less Iter
+lessIter: Loop macro for iterating from zero to a limit.
+ Member  Type  Description 
+ iterator (type)  loop variable name  The current iteration number. 
+ value  type  Exclusive upper bound of the range. 
+Example Usage:
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
+
+High Iter
+highIter: Loop macro for iterating downward from a starting value.
+ Member  Type  Description 
+ iterator (type)  loop variable name  The current iteration number. 
+ start  type  Starting value of the range. 
+Example Usage:
+for (int i = 10; i >= 0; i) {
+    printf("%d\n", i);
+}
+
+InRange Iter
+inRangeIter: Loop macro for iterating from a start to end using a custom step.
+ Member  Type  Description 
+ iterator (type)  loop variable name  The current iteration number. 
+ start  type  Initial value of the range. 
+ end  type  Exclusive upper bound of the range. 
+ step  type  Increment step of the range. 
+Example Usage:
+for (int i = 10; i > 0; i += 2) {
+    printf("%d\n", i);
+}
+
+In Range
+in_range: Compare a value against a min and max using inclusive or exclusive bounds.
+ Member  Type  Description     
+ value (type)  value to test  The value to compare with. 
+ max  type  Upper bound of the range. 
+ min  type  Lower bound of the range. 
+ symbol  type  Comparison symbol ('=' for inclusive range, otherwise exclusive). 
+Example Usage:
+if (a >= 10 && a <= 20) {
+    printf("Inclusive range found\n");
+} else if (a < 10  a > 20) {
+    printf("Exclusive range found\n");
+}
+
+Memory Helpers
+
+Front Alloc
+front_alloc: Allocate an array of type in C.
+ Member  Type  Description 
+ type (type)  element type  The type to allocate. 
+ size  type  Number of elements. 
+Example Usage:
+int* array = front_alloc(int, 10);
+// ...
+
+Front Realloc
+front_realloc: Reallocate an existing C array to a new size.
+ Member  Type  Description 
+ type (type)  element type  The type of the array. 
+ memory  pointer  Pointer to the existing array. 
+ new_size  type  New number of elements in the resized array. 
+Example Usage:
+int* array = front_realloc(int, memory, 20);
+// ...
+
+Front Free
+front_free: Free memory allocated with front_alloc in C.
+ Member  Type  Description 
+ data  pointer  Pointer to the allocated memory. 
+Example Usage:
+int* array = front_free(data);
+// ...
+
+Object Definitions
+object: Alias for beginning a struct definition in C.
+cenum: Alias for beginning an enum definition in C.
+cstring: Declare a fixedsize character array in C.
+Example Usage:
+typedef struct {
+    int x;
+} ExampleObjectName;
+struct { char str[10]; };
+ExampleObjectName example_obj = { 0, "Hello" };
+
+C Enum Definitions
+cenum: Alias for beginning an enum definition in C.
+cstring: Declare a fixedsize character array in C.
+Example Usage:
+enum {
+    A,
+    B,
+    C
+};
+struct { int x; char str[10]; };
+ExampleObjectName example_obj = { 0, "Hello" };
+
+C String Definitions
+cstring: Declare a fixedsize character array in C.
+Example Usage:
+const char* message = "Hello";
+char buffer[10];
+strcpy(buffer, message);
+
+C Vector and Queue Definitions
+vec: Alias for beginning a vector definition in C.
+que: Alias for beginning a queue definition in C.
+Example Usage:
+std::vector<int> vec;
+// ...
+std::queue<char> que;
+vec.push_back(10);
+que.push_front('A');
+
+C Map and List Definitions
+hash_map: Alias for beginning an unordered map definition in C++.
+initList: Alias for beginning a fixedsize initialization list in C++.
+Example Usage:
+std::unordered_map<int, std::string> hashMap;
+// ...
+std::initializer_list<std::string> initList;
+
+Function Definitions
+lambda_func: Create a C++ lambda with an explicit return type.
+lambda_void: Create a C++ lambda with void return.
+Example Usage:
+auto result = lambda_func(int, 42);
+// ...
+std::function<int()> func1;
+func1 = lambda_void((int)42);
+
+String and Function Type Definitions
+str: Alias for std::string.
+func: Alias for std::function<T>.
+Example Usage:
+cpp
+using str = std::string;
+auto func1 = lambda_func(str, "Hello");
+// ...
+using func = std::function<int>();
+func = lambda_void((int)42);
+
+C++ Function Definitions
+c_string: Declare a fixedsize character array in C++.
+cstring: Declare a fixedsize character array in C++.
+Example Usage:
+cpp
+const char* message = "Hello";
+char buffer[10];
+strcpy(buffer, message);

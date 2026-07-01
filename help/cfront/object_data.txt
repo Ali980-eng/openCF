@@ -1,0 +1,37 @@
+cfront/object_data.h
+
+The provided C++ code defines a library that includes various data constants and objects for use in other parts of the program.
+This library provides a structured approach to organizing and utilizing these components.
+
+OBJECTS & DATA STRUCTURES
+
+Structs
+
+ cbool: A boolean constant with a given value.
+ cchar: An 8-bit signed char constant.
+ cshort, cint, cfloat, cdouble, clong, and cxxstring, cxxvector, cxxmap, and cxxunordered_map: Various data types for storing and manipulating strings, integers, floats, and other values.
+ cxxdata: A generic typed object with a given type.
+ cauto and cdynamic: Helper macros for automatic or compiler type inference.
+
+Data Constants
+
+ cint8, cuint8, cshort, cfloat, clong, and cxxvector: Data constants of specific data types, including integer and floating-point values.
+ cstring and cxxmap: String literals and maps with given key-value pairs.
+
+Functions
+
+ Various functions for performing operations on the defined data structures:
+    Initialization, destruction, and member access.
+    Comparison operators (less-than, greater-than, etc.) for sorting or iterating over objects.
+    Function declarations for various types of operations (e.g., arithmetic, string manipulation).
+
+Macros
+
+ #ifdef __cplusplus and #ifndef STRICT_MODE: Used to conditionally compile code based on the C++ standard's behavior when compiling with strict mode enabled or disabled.
+
+Other Features
+
+ Rule: Plain text only; no special formatting allowed.
+ Clear separation of sections using lines of equals/dashes.
+ Descriptive and professional documentation for each component.
+ Important considerations, edge cases, and usage tips for each function.

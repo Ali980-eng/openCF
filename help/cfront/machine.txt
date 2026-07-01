@@ -1,0 +1,44 @@
+cfrint/machine.h
+
+The OpenCF Machine library is a comprehensive set of tools and data structures designed for building complex applications.
+This library provides a foundation for developing high-performance applications, particularly in the fields of computing, artificial intelligence, and scientific simulations.
+
+OBJECTS & DATA STRUCTURES
+
+1. memory
+Description
+The memory class is responsible for managing memory allocation and deallocation.
+It provides methods for initializing and resizing memory blocks.
+Members
+ cstring: A string class that stores a contiguous block of memory.
+ size_t: An unsigned integer type used to represent the size of memory blocks.
+
+2. data
+Description
+The data class is a container for storing and managing data structures.
+It provides methods for initializing, resizing, and modifying data elements.
+Members
+ name: A string that represents the name of the data structure.
+ fsize: The size of the data element in bytes.
+ array: An array of elements representing the data structure.
+ data_size: The total number of elements in the data structure.
+ elements: An iterator to access individual elements in the data structure.
+
+3. add_data
+Description
+The add_data function is used to add new data elements to a container.
+Parameters
+ data: The data element to be added.
+ size: The size of the new data element in bytes.
+Returns: None (void)
+
+Notes:
+- This function modifies existing memory allocation by adding new data elements.
+- It does not allocate new memory, instead reusing the existing memory block if possible.
+Rules for the output:
+- Use plain ASCII text only, no special formatting
+- Clearly separate sections with lines of equals/dashes
+- Be descriptive and professional
+- Include all objects and functions found in the code
+- Explain what each component does and how to use it
+- Note any important limitations or requirements
