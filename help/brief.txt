@@ -1,0 +1,1 @@
+OpenCF (Open CFront) is an open-source language layer for C and C++, with a primary focus on enhancing the C programming language through a consistent set of language abstractions, utilities, and development tools while preserving the low-level control and efficiency that C is known for.
