@@ -1,5 +1,5 @@
 /**
- * @file cfront.h
+ * @file cfrost.h
  * @brief Micro Definitions and Utility Macros
  * @author ali lafi
  * @date May 25, 2026
@@ -34,16 +34,18 @@
  * - count()            : Count occurrences of character in string
  */
 
-#ifndef OPENCF___CFRONT_H
-#define OPENCF___CFRONT_H
+#ifndef OPENCF___CFROST_H
+#define OPENCF___CFROST_H
 
-#ifdef cobject_data_micros
-#include "cfront/object_data.h"
+#if defined(cobject_data_micros)
+
+#include "cfrost/object_data.h"
+
+#else // cobject_data_micros
+
+#include "cfrost/structure.h"
+#include "cfrost/test.h"
+
 #endif // cobject_data_micros
 
-#ifndef cobject_data_micros
-#include "cfront/structure.h"
-#include "cfront/test.h"
-#endif // cobject_data_micros
-
-#endif // OPENCF___CFRONT_H
+#endif // OPENCF___CFROST_H

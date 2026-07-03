@@ -1,6 +1,6 @@
 #pragma once
-#ifndef OPENCF___CFRONT___MACHINE_H
-#define OPENCF___CFRONT___MACHINE_H
+#ifndef OPENCF___CFROST___MACHINE_H
+#define OPENCF___CFROST___MACHINE_H
 /*
     #include "structure.h"
 
@@ -10,4 +10,4 @@
 
     #define cfront_add_data(data)
 */
-#endif // OPENCF___CFRONT___MACHINE_H
+#endif // OPENCF___CFROST___MACHINE_H

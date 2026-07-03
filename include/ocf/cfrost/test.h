@@ -1,8 +1,8 @@
-#ifndef OPENCF___CFRONT___TEST_H
-#define OPENCF___CFRONT___TEST_H
+#ifndef OPENCF___CFROST___TEST_H
+#define OPENCF___CFROST___TEST_H
 
     /**
-     * @file include/cfront/test.h
+     * @file include/cfrost/test.h
      * @brief Lightweight C and C++ test utilities implemented as macros.
      *
      * This header defines small, header-only testing helpers for both C and C++.
@@ -819,4 +819,4 @@
             
         #endif // __cplusplus
     #endif
-#endif // OPENCF___CFRONT___TEST_H
+#endif // OPENCF___CFROST___TEST_H

@@ -1,10 +1,10 @@
 #include <stdint.h>
 
-#ifndef OPENCF___CFRONT___OBJECT_DATA_H
-#define OPENCF___CFRONT___OBJECT_DATA_H
+#ifndef OPENCF___CFROST___OBJECT_DATA_H
+#define OPENCF___CFROST___OBJECT_DATA_H
 
     /**
-     * @file include/cfront/object_data.h
+     * @file include/cfrost/object_data.h
      * @brief Macros for declaring data constants and objects in a dedicated section.
      *
      * This header provides helper macros to place constant values and C++ objects
@@ -581,4 +581,4 @@
         #define typedef ERROR_TYPE_NOT_ALLOWED
 
     #endif // ALLOW_LOGIC_MODE
-#endif // OPENCF___CFRONT___OBJECT_DATA_H
+#endif // OPENCF___CFROST___OBJECT_DATA_H

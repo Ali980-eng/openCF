@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    cfront - Retrieve version, license, help, or library documentation.
+    cfrost - Retrieve version, license, help, or library documentation.
 
 .DESCRIPTION
     This script accepts a command and an optional path.
@@ -18,13 +18,13 @@
     Optional library path for --help command
 
 .EXAMPLE
-    .\cfront.ps1 --author
-    .\cfront.ps1 --brief
-    .\cfront.ps1 --version
-    .\cfront.ps1 --license
-    .\cfront.ps1 --help
-    .\cfront.ps1 --help cfront/structure.h
-    .\cfront.ps1 --help cfront.h
+    .\cfrost.ps1 --author
+    .\cfrost.ps1 --brief
+    .\cfrost.ps1 --version
+    .\cfrost.ps1 --license
+    .\cfrost.ps1 --help
+    .\cfrost.ps1 --help cfrost/structure.h
+    .\cfrost.ps1 --help cfrost.h
 #>
 
 param(
@@ -45,7 +45,7 @@ $script:briefFile = "help/brief.txt"
 # ===================== Helper Functions =====================
 
 function Show-Version {
-    Write-Host "cfront version $script:Version" -ForegroundColor Green
+    Write-Host "cfrost version $script:Version" -ForegroundColor Green
 }
 
 function Show-License {
@@ -73,16 +73,16 @@ function Show-Brief {
 function Show-Help {
     $helpText = @"
 ===========================================
-        cfront - Information System
+        cfrost - Information System
 ===========================================
 
 Usage:
-    .\cfront.ps1 --author
-    .\cfront.ps1 --brief
-    .\cfront.ps1 --version
-    .\cfront.ps1 --license
-    .\cfront.ps1 --help
-    .\cfront.ps1 --help <path>
+    .\cfrost.ps1 --author
+    .\cfrost.ps1 --brief
+    .\cfrost.ps1 --version
+    .\cfrost.ps1 --license
+    .\cfrost.ps1 --help
+    .\cfrost.ps1 --help <path>
 
 Options:
     --author                : Show the name of the author.
@@ -91,13 +91,13 @@ Options:
     --license               : Show license content (from documentation/lic.txt).
     --help                  : Show this help message.
     --help <path>           : Show documentation for a specific library.
-                              <path> is the library file path (e.g., cfront/structure.h).
+                              <path> is the library file path (e.g., cfrost/structure.h).
                               The script looks for documentation at:
                               help/<path_without_extension>.txt
 
 Examples:
-    .\cfront.ps1 --help cfront/structure.h
-    .\cfront.ps1 --help cfront.h
+    .\cfrost.ps1 --help cfrost/structure.h
+    .\cfrost.ps1 --help cfrost.h
 
 Note:
     - The documentation root folder is 'documentation/text' relative to the script location.

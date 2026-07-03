@@ -1,8 +1,8 @@
-#ifndef OPENCF___CFRONT___STRUCTURE_H
-#define OPENCF___CFRONT___STRUCTURE_H
+#ifndef OPENCF___CFROST___STRUCTURE_H
+#define OPENCF___CFROST___STRUCTURE_H
 
     /**
-     * @file include/cfront/structure.h
+     * @file include/cfrost/structure.h
      * @brief Lightweight structural helper macros for C and C++.
      *
      * This header provides shorthand macros for main function entrypoints,
@@ -552,4 +552,4 @@
 
         #endif // __cplusplus
     #endif
-#endif // OPENCF___CFRONT___MICROS_STRUCTURE_H
+#endif // OPENCF___CFROST___MICROS_STRUCTURE_H
