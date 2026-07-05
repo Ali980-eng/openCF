@@ -35,7 +35,7 @@
 #include "get_bit.h"
 #include "reset_bit.h"
 #include "set_bit.h"
-#include "ocf/cfront/structure.h"
+#include "cfrost/structure.h"
 
 #ifndef METACORE___CGEN___BITUTILITYS_CBOOL_8_H
 #define METACORE___CGEN___BITUTILITYS_CBOOL_8_H

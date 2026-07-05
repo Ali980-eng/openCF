@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "dynamic.h"
-#include "ocf/cfront/structure.h"
+#include "cfront/structure.h"
 
 #ifndef METACORE___CGEN___DDT_QUEUE_H
 #define METACORE___CGEN___DDT_QUEUE_H

@@ -3,17 +3,17 @@
     "configurations": [
         // ─── Python (build system) ───────────────────────────────
         {
-            "name": "Python: build.py",
+            "name": "Python: cfrost.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/build.py",
+            "program": "${workspaceFolder}/cfrost.py",
             "console": "integratedTerminal"
         },
         {
-            "name": "Python: MetaBuild.py",
+            "name": "Python: cfrost.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/MetaBuild.py",
+            "program": "${workspaceFolder}/cfrost.py",
             "console": "integratedTerminal"
         }
     ]

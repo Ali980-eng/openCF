@@ -13,7 +13,7 @@
  * @date 2024-06
  */
 
-#include "ocf/cfront/structure.h"
+#include "cfrost/structure.h"
 
 #if defined(OPENCF_FOR_GNU)
 

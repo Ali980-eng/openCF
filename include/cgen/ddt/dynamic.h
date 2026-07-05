@@ -8,7 +8,7 @@
  * @date 2024-06
  */
 
-#include "ocf/cfront/structure.h"
+#include "cfrost/structure.h"
 #include <stdexcpt.h>
 #include <stdbool.h>
 #include <limits.h>
