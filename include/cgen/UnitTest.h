@@ -316,7 +316,7 @@
         return ocf_test_new(newVal, name, description, true);
     }
 
-    static inline bool ocf_test_str(cstr real, cstr expected, bool details, unsigned int seplen, char sepch)
+    static inline bool ocf_test_cstr(cstr real, cstr expected, bool details, unsigned int seplen, char sepch)
     {
         return ocf_test_str(real.data, expected.data,
                         details, seplen, sepch);

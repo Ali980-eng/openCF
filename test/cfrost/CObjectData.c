@@ -1,4 +1,4 @@
-#include "meta/cgen/micros/object_data.h"
+#include "cfrost/object_data.h"
 
 cbool(value1, true)
 cchar(value2, '9')

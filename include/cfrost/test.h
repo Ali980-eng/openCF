@@ -76,7 +76,7 @@
              * @param PS print summary flag.
              */
             #define OCF_TEST_EXIT(PS)                          \
-                    if(print_summary) TEST_SUMMARY;            \
+                    if(print_summary) OCF_TEST_SUMMARY;        \
                     return (int)(tests_failed || warningFlag); \
                 }
             
@@ -292,7 +292,7 @@
              * @param PS print summary flag.
              */
             #define OCF_TEST_EXIT(PS)         \
-                    if (PS) CTEST_SUMMARY;    \
+                    if (PS) OCF_TEST_SUMMARY; \
                     return (int)tests_failed; \
                 }
 
@@ -696,7 +696,7 @@
              * @param PS print summary flag.
              */
             #define TEST_EXIT(PS)             \
-                    if (PS) CTEST_SUMMARY;    \
+                    if (PS) TEST_SUMMARY;     \
                     return (int)tests_failed; \
                 }
 
@@ -777,7 +777,7 @@
 
 
             /**
-             * @def CTEST_EQU
+             * @def TEST_EQU
              * @brief Assert that two values are equal and record a failure if not.
              * @param real actual value.
              * @param expected expected value.
@@ -797,7 +797,7 @@
                 } while(false)
 
             /**
-             * @def CTEST_EQU_MSG
+             * @def TEST_EQU_MSG
              * @brief Assert equality and include a failure message.
              * @param real actual value.
              * @param expected expected value.
