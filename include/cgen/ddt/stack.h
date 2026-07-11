@@ -16,7 +16,8 @@
 #define METACORE___CGEN___DDT_STACK_H
 
 #if defined(OPENCF_FOR_GNU)
-    ocf_object
+    
+    ocf_object ocf_stack
     {
         size_t size;
         size_t capacity;
@@ -76,7 +77,7 @@
     }
 #else
 
-    object
+    object cstack
     {
         size_t size;
         size_t capacity;

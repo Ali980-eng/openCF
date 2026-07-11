@@ -28,7 +28,7 @@
             dyn_enum_long = 6,
             dyn_enum_double = 7;
 
-        ocf_object
+        ocf_object ocf_dynamic
         {
             uint8_t id;
             double value;
@@ -449,7 +449,7 @@
             dyn_enum_long = 6,
             dyn_enum_double = 7;
 
-        object
+        object cdynamic
         {
             uint8_t id;
             double value;

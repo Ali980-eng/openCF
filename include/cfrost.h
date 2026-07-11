@@ -37,15 +37,15 @@
 #ifndef OPENCF___CFROST_H
 #define OPENCF___CFROST_H
 
-#if defined(cobject_data_micros)
-
-#include "cfrost/object_data.h"
-
-#else // cobject_data_micros
-
-#include "cfrost/structure.h"
-#include "cfrost/test.h"
-
+#if defined(cobject_data_micros) && !defined(ALLOW_LOGIC_MODE)
+    #include "cfrost/object_data.h"
+#elif defined(cobject_data_micros) && defined(ALLOW_LOGIC_MODE)
+    #include "cfrost/object_data.h"
+    #include "cfrost/structure.h"
+    #include "cfrost/test.h"
+#else
+    #include "cfrost/structure.h"
+    #include "cfrost/test.h"
 #endif // cobject_data_micros
 
 #endif // OPENCF___CFROST_H

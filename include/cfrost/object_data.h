@@ -515,7 +515,7 @@
          */
         #define carray_f64(name, ...) const double name[] = {__VA_ARGS__};
 
-    #endif // OPENCF_GNU
+    #endif // OPENCF_FOR_GNU
 
     // allows for using in regular libraries without previnting basic language features
     #ifndef ALLOW_LOGIC_MODE

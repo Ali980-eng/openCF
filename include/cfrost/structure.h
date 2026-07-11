@@ -50,6 +50,13 @@
         #define ocf_ret(retval) return (int)retval;
 
         /**
+         * @def ocf_procedure
+         * @brief defines function with void return type with out any parameter for the function.
+         * @param name is the name of the function.
+         */
+        #define ocf_procedure(name) void name()
+
+        /**
          * @def ocf_lessIter
          * @brief Loop macro for iterating from zero to a limit.
          * @param iterator loop variable name.
@@ -68,7 +75,7 @@
          */
         #define ocf_high(iterator, value)  \
             size_t iterator = value;       \
-            iterator >= 0;                 \
+            iterator > 0;                 \
             iterator--
 
         /**
@@ -203,11 +210,14 @@
              * @param memory pointer to the existing array.
              * @param new_size number of new elements.
              */
-            #define ocf_realloc(type, memory, new_size) \
-                type* temp = new type[size];             \
-                delete[] memory;                         \
-                memory = temp;                           \
-                delete temp
+            #define ocf_realloc(type, memory, new_size)                                     \
+                do {                                                                        \
+                    type* temp = new type[new_size];                                        \
+                    for(size_t i = 0; i < (old_size < new_size ? old_size : new_size); ++i) \
+                        temp[i] = memory[i];                                                \
+                    delete[] memory;                                                        \
+                    memory = temp;                                                          \
+                } while(false)
 
             /**
              * @def ocf_free
@@ -308,17 +318,24 @@
         #define command_main int main(int argc, char* argv[])
 
         /**
-         * @def MAIN
+         * @def main_func
          * @brief Define a main function without parameters.
          */
-        #define MAIN int main()
+        #define main_func int main()
 
         /**
-         * @def frontRet
+         * @def ret_i
          * @brief Return a value from main and close the function body.
          * @param retval return value.
          */
-        #define ret(retval) return (int)retval;
+        #define ret_i(retval) return (int)retval;
+
+        /**
+         * @def procedure
+         * @brief defines function with void return type with out any parameter for the function.
+         * @param name is the name of the function.
+         */
+        #define procedure(name) void name(void)
 
         /**
          * @def less_iter
@@ -339,7 +356,7 @@
          */
         #define high_iter(iterator, value) \
             size_t iterator = value;       \
-            iterator >= 0;                 \
+            iterator > 0;                  \
             iterator--
 
         /**
@@ -474,11 +491,14 @@
              * @param memory pointer to the existing array.
              * @param new_size number of new elements.
              */
-            #define reallocate(type, memory, new_size) \
-                type* temp = new type[size];           \
-                delete[] memory;                       \
-                memory = temp;                         \
-                delete temp
+            #define reallocate(type, memory, old_size, new_size)                            \
+                do {                                                                        \
+                    type* temp = new type[new_size];                                        \
+                    for(size_t i = 0; i < (old_size < new_size ? old_size : new_size); ++i) \
+                        temp[i] = memory[i];                                                \
+                    delete[] memory;                                                        \
+                    memory = temp;                                                          \
+                } while(false)
 
             /**
              * @def free_micro

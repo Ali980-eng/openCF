@@ -19,7 +19,7 @@
 
 #if defined(OPENCF_FOR_GNU)
 
-    ocf_object
+    ocf_object ocf_queue
     {
         size_t size;
         size_t capacity;
@@ -84,7 +84,7 @@
 
 #else
 
-    object
+    object cqueue
     {
         size_t size;
         size_t capacity;

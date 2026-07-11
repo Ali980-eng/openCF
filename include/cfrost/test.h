@@ -37,8 +37,7 @@
                     << "\npassed tests ratio: "                     \
                     << (double)(100 * (tests_passed / total_tests)) \
                     << "\nfailed tests ratio: "                     \
-                    << (double)(100 * (tests_failed / total_tests)) \
-                    << (100 * (tests_failed / total_tests));        \
+                    << (double)(100 * (tests_failed / total_tests));\
                 }                                                   \
                 else                                                \
                 {                                                   \
@@ -441,8 +440,7 @@
                     << "\npassed tests ratio: "                     \
                     << (double)(100 * (tests_passed / total_tests)) \
                     << "\nfailed tests ratio: "                     \
-                    << (double)(100 * (tests_failed / total_tests)) \
-                    << (100 * (tests_failed / total_tests));        \
+                    << (double)(100 * (tests_failed / total_tests));\
                 }                                                   \
                 else                                                \
                 {                                                   \
@@ -480,7 +478,7 @@
              * @param PS print summary flag.
              */
             #define TEST_EXIT(PS)                              \
-                    if(print_summary) TEST_SUMMARY;            \
+                    if(PS) TEST_SUMMARY;            \
                     return (int)(tests_failed || warningFlag); \
                 }
             

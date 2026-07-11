@@ -16,7 +16,7 @@
 
 #if defined(OPENCF_FOR_GNU)
 
-    ocf_object
+    ocf_object ocf_array
     {
         size_t size;
         size_t capacity;
@@ -317,7 +317,7 @@
 
 #else
 
-    object
+    object carray
     {
         size_t size;
         size_t capacity;
