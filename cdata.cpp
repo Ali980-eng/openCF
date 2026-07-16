@@ -14,16 +14,21 @@
 
 #include <unordered_map>
 #include <string>
+#include <cinttypes>
+#include "cfrost/structure.h"
 
-std::unordered_map<std::string, std::string> vars;
-
-enum token_type {
-    Boolean,
-    Character,
-    Integer,
-    Long,
-    Float,
-    Double,
-    String,
-    type_symbol
-};
+namespace cdata {
+    hash_map<str, bool> booleans;
+    hash_map<str, char> chars;
+    hash_map<str, int8_t> micro_numbers;
+    hash_map<str, int16_t> short_numbers;
+    hash_map<str, int32_t> int_numbers;
+    hash_map<str, int64_t> long_numbers;
+    hash_map<str, uint8_t> umicro_numbers;
+    hash_map<str, uint16_t> ushort_numbers;
+    hash_map<str, uint32_t> uint_numbers;
+    hash_map<str, uint64_t> ulong_numbers;
+    hash_map<str, float> float32_numbers;
+    hash_map<str, double> float64_numbers;
+    hash_map<str, str> strings;
+}

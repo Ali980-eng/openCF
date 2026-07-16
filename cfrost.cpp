@@ -4,14 +4,15 @@
 #include <fstream>
 #include <vector>
 #include <queue>
+#include "cfrost/structure.h"
 
 namespace cfrost {
     namespace data {
-        std::unordered_map<std::string, std::string> var_types;
-        std::unordered_map<std::string, std::string> obj;
-        std::unordered_map<std::string, std::string> func;
-        std::unordered_map<std::string, std::string> prefix;
-        const std::unordered_map<std::string, std::string> postfix{
+        hash_map<str, str> var_types;
+        hash_map<str, str> obj;
+        hash_map<str, str> func;
+        hash_map<str, str> prefix;
+        const hash_map<str, str> postfix{
             {"bool", "bl"},
             {"char", "ch"},
             {"short", "si16"},
@@ -33,7 +34,7 @@ namespace cfrost {
     }
 
     namespace tools {
-        bool is_type(const std::string& command) noexcept {
+        bool is_type(const str& command) noexcept {
             if(command == "bool") return true;
             else if(command == "char") return true;
             else if(command == "short") return true;
@@ -70,73 +71,112 @@ namespace cfrost {
         ignore
     };
 
-    struct token {
+    class token {
+        private:
+        str tok;
         char t;
         token_type type;
-        std::string tok;
+        public:
+        token() = default;
+        ~token() = default;
+        token(const token & other) noexcept {
+            this->tok = other.tok;
+            this->t = other.t;
+            this->type = other.type;
+        }
+        
+        inline void operator=(const token& other) noexcept {
+            this->tok = other.tok;
+            this->t = other.t;
+            this->type = other.type;
+        }
+
+        inline void operator=(const str& tok) noexcept { this->tok = tok; }
+        inline void operator=(const char& t) noexcept { this->t = t; }
+        inline void operator=(const token_type& type) noexcept { this->type = type; }
+
+        inline bool operator==(const str& tok) noexcept { return this->tok == tok; }
+        inline bool operator==(const char& t) noexcept { return this->t == t; }
+        inline bool operator==(const token_type& type) noexcept { return this->type == type; }
+
+        inline bool operator!=(const str& tok) noexcept { return this->tok != tok; }
+        inline bool operator!=(const char& t) noexcept { return this->t != t; }
+        inline bool operator!=(const token_type& type) noexcept { return this->type != type; }
+
+        inline void operator<<(const char& tok) noexcept { this->tok += tok; }
+        
+        inline procedure(clear) noexcept {
+            tok.clear();
+            t = char();
+            type = token_type::none;
+        }
     };
 
-    void preformater(const std::filesystem::path& source) noexcept {
+    que<str> preformater(const std::filesystem::path& source) noexcept {
         for(const auto& entry : std::filesystem::directory_iterator(source)) {
             if(entry.is_directory()) preformater(entry.path());
             else if(entry.path().extension() == ".c") {
                 std::ifstream file(entry.path());
-                std::string command;
-                std::queue<std::string> formatted;
+                str command;
+                que<str> formatted;
                 while(std::getline(file, command)) {
-                    if(command)
+                    if(command.empty()) continue;
+                    else formatted.push(command);
                 }
                 file.close();
-                std::ofstream out(entry.path());
-                while(std::string )
-                out << formatted;
-                out.close();
+                return formatted;
             }
         }
     }
 
-    const std::queue<token> lexer(const std::string& command) noexcept {
-        std::queue<token> tokens;
-        token temp = {" ", token_type::none};
-        bool is_new_name = false;
-        for(char c : command) {
-            if( c == '(' ||
-                c == ')' ||
-                c == '{' ||
-                c == '}' ||
-                c == '[' ||
-                c == '=' ||
-                c == '!' ||
-                c == '-' ||
-                c == '+' ||
-                c == '/' ||
-                c == '*' ||
-                c == '&' ||
-                c == '|' ||
-                c == '\''||
-                c == '\"'||
-                c == ';'
-            ) {
-                temp.t = c;
-                temp.type = token_type::symbol;
-            } else if(c == ':') {
-                temp.t = c;
-                temp.type = token_type::prefix_symbol;
-            } else if(temp.tok == "func") {
-                temp.t = c;
-                temp.type = token_type::function;
-            } else if(c != ' ') {
-                temp.tok += c;
-                continue;
+    que<que<token>> lexer(que<str>& source) noexcept {
+        que<que<token>> result;
+        while(!source.empty()) {
+            que<token> temp_queue;
+            token temp_token;
+            bool is_new_name = false;
+            str command = source.front(); source.pop();
+            for(char c : command) {
+                if( c == '(' ||
+                    c == ')' ||
+                    c == '{' ||
+                    c == '}' ||
+                    c == '[' ||
+                    c == '=' ||
+                    c == '!' ||
+                    c == '-' ||
+                    c == '+' ||
+                    c == '/' ||
+                    c == '*' ||
+                    c == '&' ||
+                    c == '|' ||
+                    c == '\''||
+                    c == '\"'||
+                    c == ';'
+                ) {
+                    temp_token = c;
+                    temp_token = token_type::symbol;
+                } else if(c == ':') {
+                    temp_token = c;
+                    temp_token = token_type::prefix_symbol;
+                } else if(temp_token == "func") {
+                    temp_token = c;
+                    temp_token = token_type::function;
+                } else if(c != ' ') {
+                    temp_token << c;
+                    continue;
+                }
+                if(temp_token == "prefix") temp_token = token_type::prefix;
+                else if(temp_token == "object") temp_token = token_type::object;
+                temp_queue.push(temp_token);
+                temp_token.clear();
             }
-            if(temp.tok == "prefix") temp.type = token_type::prefix;
-            else if(temp.tok == "object") temp.type = token_type::object;
-            tokens.push(temp);
-            temp = token{" ", ' ', token_type::none};
+            result.push(temp_queue);
+            temp_queue = que<token>();
         }
     }
 
-    const std::string formater(const std::queue<token>& tokens) noexcept;
+    const que<str> formater(const que<token>& tokens) noexcept;
 }
 
 int main() {
