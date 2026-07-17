@@ -15,7 +15,7 @@
  *          Covers uint8, int8, uint16, int16, uint32, int32, uint64, int64
  */
 
-OCF_TEST_MAIN(meta_cgen: bitUtilitys);
+OCF_TEST_MAIN(cgen: bitUtilitys);
 
   // ==================== 8-BIT UNSIGNED INTEGER OCF_TESTS ====================
   //  testing: ocf_get_u8bit, ocf_set_u8bit, ocf_reset_u8bit, ocf_toggle_u8bit, ocf_xchg_u8bit, ocf_count_u8bit

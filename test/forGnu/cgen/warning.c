@@ -2,7 +2,7 @@
 #include "cfrost.h"
 #include "cgen/warning.h"
 
-OCF_TEST_MAIN(meta_cgen: warning);
+OCF_TEST_MAIN(cgen: warning);
 
     // Reset counter for consistent testing
     size_t ocf_warningCounter = 0;

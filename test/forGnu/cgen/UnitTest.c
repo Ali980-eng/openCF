@@ -10,7 +10,7 @@
  *          float, double, and string testing.
  */
 
-OCF_TEST_MAIN(meta_cgen: UnitTest);
+OCF_TEST_MAIN(cgen: UnitTest);
     
     // ==================== OCF_TEST OBJECT CREATION AND MANAGEMENT ====================
     

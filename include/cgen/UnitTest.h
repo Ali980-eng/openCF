@@ -316,7 +316,7 @@
         return ocf_test_new(newVal, name, description, true);
     }
 
-    static inline bool ocf_test_cstr(cstr real, cstr expected, bool details, unsigned int seplen, char sepch)
+    static inline bool ocf_test_ocf_str(ocf_str real, ocf_str expected, bool details, unsigned int seplen, char sepch)
     {
         return ocf_test_str(real.data, expected.data,
                         details, seplen, sepch);
@@ -337,8 +337,8 @@
     /// @param expected the expected boolean value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestBool(ocf_test_stream current, bool real, bool expected, bool details) {
-        bool temp = ocf_test_basic_test_bool(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_bool(ocf_test_stream current, bool real, bool expected, bool details) {
+        bool temp = ocf_test_basic_b(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -351,8 +351,8 @@
     /// @param expected the expected charater value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestChar(ocf_test_stream current, char real, char expected, bool details) {
-        bool temp = ocf_test_basic_test_char(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_char(ocf_test_stream current, char real, char expected, bool details) {
+        bool temp = ocf_test_basic_c(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -365,8 +365,8 @@
     /// @param expected the expected short value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestShort(ocf_test_stream current, short real, short expected, bool details) {
-        bool temp = ocf_test_basic_test_short(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_short(ocf_test_stream current, short real, short expected, bool details) {
+        bool temp = ocf_test_basic_s(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -379,8 +379,8 @@
     /// @param expected the expected integer value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestInt(ocf_test_stream current, int real, int expected, bool details) {
-        bool temp = ocf_test_basic_test_int(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_int(ocf_test_stream current, int real, int expected, bool details) {
+        bool temp = ocf_test_basic_i(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -393,8 +393,8 @@
     /// @param expected the expected long value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestLong(ocf_test_stream current, long real, long expected, bool details) {
-        bool temp = ocf_test_basic_test_long(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_long(ocf_test_stream current, long real, long expected, bool details) {
+        bool temp = ocf_test_basic_l(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -407,8 +407,8 @@
     /// @param expected the expected floating point value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestFloat(ocf_test_stream current, float real, float expected, bool details) {
-        bool temp = ocf_test_basic_test_float(real, expected, details, current.seplen, current.sepch, 0.01f);
+    static inline ocf_test_stream ocf_add_test_float(ocf_test_stream current, float real, float expected, bool details) {
+        bool temp = ocf_test_basic_f(real, expected, details, current.seplen, current.sepch, 0.01f);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -421,8 +421,8 @@
     /// @param expected the expected double value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestDouble(ocf_test_stream current, double real, double expected, bool details) {
-        bool temp = ocf_test_basic_test_double(real, expected, details, current.seplen, current.sepch, 0.01);
+    static inline ocf_test_stream ocf_add_test_double(ocf_test_stream current, double real, double expected, bool details) {
+        bool temp = ocf_test_basic_d(real, expected, details, current.seplen, current.sepch, 0.01);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -435,8 +435,8 @@
     /// @param expected the expected size_t value base on the desired behaver.
     /// @param details Whether to print detailed test results.
     /// @return test stream value after changing the values of it.
-    static inline ocf_test_stream ocf_test_addTestSize(ocf_test_stream current, size_t real, size_t expected, bool details) {
-        bool temp = ocf_test_basic_test_size(real, expected, details, current.seplen, current.sepch);
+    static inline ocf_test_stream ocf_add_test_size(ocf_test_stream current, size_t real, size_t expected, bool details) {
+        bool temp = ocf_test_basic_sz(real, expected, details, current.seplen, current.sepch);
         if(temp) current.success_tests++;
         else current.failed_tests++;
         current.total_tests++;
@@ -449,7 +449,7 @@
      * @return The average success rate as a percentage (0.0 - 100.0).
      * @note Uses floating-point arithmetic to avoid integer division truncation.
      */
-    static inline float ASR(ocf_test_stream ts) {
+    static inline float OCF_ASR(ocf_test_stream ts) {
         if (ts.total_tests == 0) return 0.0f;
         return 100.0f * ts.success_tests / ts.total_tests;
     }
@@ -460,7 +460,7 @@
      * @return The average failure rate as a percentage (0.0 - 100.0).
      * @note Uses floating-point arithmetic to avoid integer division truncation.
      */
-    static inline float AFR(ocf_test_stream ts) {
+    static inline float OCF_AFR(ocf_test_stream ts) {
         if (ts.total_tests == 0) return 0.0f;
         return 100.0f * ts.failed_tests / ts.total_tests;
     }
@@ -485,35 +485,25 @@
         printf("Average failed rate: %.2f%%\n", AFR(testResults));
     }
 
-    #define ocf_test_addTest(current, real, expected, details) _Generic((real), \
-        bool: ocf_test_addTestBool(current, real, expected, details),           \
-        char: ocf_test_addTestChar(current, real, expected, details),           \
-        short: ocf_test_addTestShort(current, real, expected, details),         \
-        int: ocf_test_addTestInt(current, real, expected, details),             \
-        long: ocf_test_addTestLong(current, real, expected, details),           \
-        size_t: ocf_test_addTestSize(current, real, expected, details),         \
-        float: ocf_test_addTestFloat(current, real, expected, details),         \
-        double: ocf_test_addTestDouble(current, real, expected, details))
+    #define ocf_add_test(current, real, expected, details) _Generic((real), \
+        bool: ocf_add_test_bool(current, real, expected, details),           \
+        char: ocf_add_test_char(current, real, expected, details),           \
+        short: ocf_add_test_short(current, real, expected, details),         \
+        int: ocf_add_test_int(current, real, expected, details),             \
+        long: ocf_add_test_long(current, real, expected, details),           \
+        size_t: ocf_add_test_size(current, real, expected, details),         \
+        float: ocf_add_test_float(current, real, expected, details),         \
+        double: ocf_add_test_double(current, real, expected, details))
 
-    #define ocf_test_basic_test(real, expected, details, seplen, sepch) _Generic((real), \
-        bool: ocf_test_basic_test_bool(real, expected, details, seplen, sepch),          \
-        char: ocf_test_basic_test_char(real, expected, details, seplen, sepch),          \
-        short: ocf_test_basic_test_short(real, expected, details, seplen, sepch),        \
-        int: ocf_test_basic_test_int(real, expected, details, seplen, sepch),            \
-        long: ocf_test_basic_test_long(real, expected, details, seplen, sepch),          \
-        size_t: ocf_test_basic_test_size(real, expected, details, seplen, sepch),        \
-        float: ocf_test_basic_test_float(real, expected, details, seplen, sepch),        \
-        double: ocf_test_basic_test_double(real, expected, details, seplen, sepch))
-
-    #define ocf_test_creatNew(current, name, des, value) _Generic((value), \
-        bool: ocf_test_creatNewBool(current, name, des, value),          \
-        char: ocf_test_creatNewChar(current, name, des, value),          \
-        short: ocf_test_creatNewShort(current, name, des, value),        \
-        int: ocf_test_creatNewInt(current, name, des, value),            \
-        long: ocf_test_creatNewLong(current, name, des, value),          \
-        size_t: ocf_test_creatNewSize(current, name, des, value),        \
-        float: ocf_test_creatNewFloat(current, name, des, value),        \
-        double: ocf_test_creatNewDouble(current, name, des, value))
+    #define ocf_test_basic(real, expected, details, seplen, sepch) _Generic((real), \
+        bool: ocf_test_basic_b(real, expected, details, seplen, sepch),          \
+        char: ocf_test_basic_c(real, expected, details, seplen, sepch),          \
+        short: ocf_test_basic_s(real, expected, details, seplen, sepch),        \
+        int: ocf_test_basic_i(real, expected, details, seplen, sepch),            \
+        long: ocf_test_basic_l(real, expected, details, seplen, sepch),          \
+        size_t: ocf_test_basic_sz(real, expected, details, seplen, sepch),        \
+        float: ocf_test_basic_f(real, expected, details, seplen, sepch),        \
+        double: ocf_test_basic_d(real, expected, details, seplen, sepch))
 
 #else
 

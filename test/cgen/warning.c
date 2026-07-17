@@ -1,7 +1,7 @@
 #include "cfrost.h"
 #include "cgen/warning.h"
 
-TEST_MAIN(meta_cgen: warning);
+TEST_MAIN(cgen: warning);
 
     // Reset counter for consistent testing
     cwarningCounter = 0;

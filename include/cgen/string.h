@@ -39,7 +39,7 @@
         return NULL;
         
         // Free old memory and allocate fresh 1 byte for empty string
-        char* temp = allocate(char, 1);
+        char* temp = ocf_alloc(char, 1);
         if (temp != NULL) {
             temp[0] = '\0';
             free(value);
@@ -191,7 +191,7 @@
     static int *ocf_locations(const char * strInput, char ch, size_t out_count)
     {
         size_t char_count = ocf_count_char(strInput, ch);
-        int *indices = allocate(int, char_count);
+        int *indices = ocf_alloc(int, char_count);
         size_t index = 0;
         size_t found_index = 0;
         while (strInput[index] != '\0')
@@ -206,13 +206,13 @@
         return indices;
     }
 
-    ocf_object ocf_cstr
+    ocf_object ocf_str
     {
         char* data;
         size_t length;
         size_t capacity;
     }
-    ocf_cstr;
+    ocf_str;
 
     /**
      * @brief Initialize a cstr object.
@@ -223,11 +223,11 @@
      *
      * @param str Pointer to the cstr structure to initialize.
      */
-    void ocf_cstr_init(ocf_cstr * strInput)
+    void ocf_str_init(ocf_str * strInput)
     {
         strInput->capacity = 16;
         strInput->length = 0;
-        strInput->data = allocate(char, strInput->capacity);
+        strInput->data = ocf_alloc(char, strInput->capacity);
         strInput->data[0] = '\0';
     }
 
@@ -241,7 +241,7 @@
      * @param dest Pointer to the target cstr.
      * @param src  Null‑terminated source string to append.
      */
-    static inline void ocf_cstr_append(ocf_cstr *dest, const char * src)
+    static inline void ocf_str_append(ocf_str *dest, const char * src)
     {
         size_t src_len = strlen(src);
 
@@ -263,7 +263,7 @@
      *
      * @param str Pointer to the cstr to free.
      */
-    static inline void ocf_cstr_free(ocf_cstr *strInput)
+    static inline void ocf_str_free(ocf_str *strInput)
     {
         free(strInput->data);
     }
@@ -279,7 +279,7 @@
      * @param destination Copy of the destination cstr structure.
      * @param source      Null‑terminated C string to assign.
      */
-    static inline void ocf_cstr_set(ocf_cstr destination, char* source)
+    static inline void ocf_str_set(ocf_str destination, char* source)
     {
         destination.data = source;
         destination.length = strlen(destination.data);
@@ -294,7 +294,7 @@
      * @param destination Copy of the destination cstr.
      * @param source      Source cstr to copy from.
      */
-    static inline void ocf_cstr_copy(ocf_cstr destination, ocf_cstr source)
+    static inline void ocf_str_copy(ocf_str destination, ocf_str source)
     {
         destination.data = source.data;
         destination.length = source.length;
@@ -311,7 +311,7 @@
      * @param str     cstr structure to resize (copied).
      * @param NLength New desired length (not including terminating null).
      */
-    static inline void ocf_cstr_resize(ocf_cstr strInput, size_t NLength)
+    static inline void ocf_str_resize(ocf_str strInput, size_t NLength)
     {
         if (NLength + 1 > strInput.capacity)
         {
@@ -331,7 +331,7 @@
      * @param destination Buffer where data will be stored.
      * @param source      Source cstr to copy from.
      */
-    static inline void ocf_cstr_copy_to(char* destination, ocf_cstr source) { strcpy(destination, source.data); }
+    static inline void ocf_str_copy_to(char* destination, ocf_str source) { strcpy(destination, source.data); }
 
     /**
      * @brief Return the length of a cstr.
@@ -339,7 +339,7 @@
      * @param source cstr whose length is queried.
      * @return Number of characters in the string (excluding null).
      */
-    static inline size_t ocf_cstr_length(ocf_cstr source) { return source.length; }
+    static inline size_t ocf_str_length(ocf_str source) { return source.length; }
 
     /**
      * @brief Create a lowercase copy of a cstr.
@@ -351,10 +351,10 @@
      * @param source Input string to convert.
      * @return New cstr containing lowercase text.
      */
-    static inline ocf_cstr ocf_cstr_lower(ocf_cstr source)
+    static inline ocf_str ocf_str_lower(ocf_str source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, source.length + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -372,10 +372,10 @@
      * @param source Input string to convert.
      * @return New cstr containing uppercase text.
      */
-    static inline ocf_cstr ocf_cstr_upper(ocf_cstr source)
+    static inline ocf_str ocf_str_upper(ocf_str source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, source.length + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -395,10 +395,10 @@
      * @param source      Second operand to append.
      * @return Newly allocated cstr with combined text.
      */
-    static inline ocf_cstr ocf_cstr_append_cstr(ocf_cstr destination, ocf_cstr source)
+    static inline ocf_str ocf_str_append_cstr(ocf_str destination, ocf_str source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, destination.length + source.length + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, destination.length + source.length + 1);
             if(destination.capacity <= destination.length + source.length) {
             result.capacity = destination.capacity + source.length + source.length / 2;
         } else {
@@ -420,10 +420,10 @@
      * @param source      Null‑terminated C string to append.
      * @return New cstr containing the concatenation.
      */
-    static inline ocf_cstr ocf_cstr_append_string(ocf_cstr destination, char* source)
+    static inline ocf_str ocf_str_append_string(ocf_str destination, char* source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, destination.length + strlen(source) + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, destination.length + strlen(source) + 1);
         if(destination.capacity <= destination.length + strlen(source)) {
             result.capacity = destination.capacity + strlen(source) + strlen(source) / 2;
         } else {
@@ -445,10 +445,10 @@
      * @param source      Character to append.
      * @return New cstr containing the result.
      */
-    static inline ocf_cstr ocf_cstr_append_char(ocf_cstr destination, char source)
+    static inline ocf_str ocf_str_append_char(ocf_str destination, char source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, destination.length + 2);
+        ocf_str result;
+        result.data = ocf_alloc(char, destination.length + 2);
         strcpy(result.data, destination.data);
         result.capacity = destination.capacity + 2;
         result.data[destination.length] = source;
@@ -464,7 +464,7 @@
      * @param target Character to look for.
      * @return true if @p target appears anywhere, false otherwise.
      */
-    static inline bool ocf_cstr_search(ocf_cstr source, char target)
+    static inline bool ocf_str_search(ocf_str source, char target)
     {
         for (size_t i = 0; i < source.length; i++)
         {
@@ -481,7 +481,7 @@
      * @param target Null‑terminated substring to find.
      * @return true if @p target is found, false otherwise.
      */
-    static inline bool ocf_cstr_search_string(ocf_cstr source, char* target)
+    static inline bool ocf_str_search_string(ocf_str source, char* target)
     {
         return strstr(source.data, target) != NULL;
     }
@@ -493,7 +493,7 @@
      * @param target cstr to search for.
      * @return true if @p target is a substring of @p source.
      */
-    static inline bool ocf_cstr_search_cstr(ocf_cstr source, ocf_cstr target)
+    static inline bool ocf_str_search_cstr(ocf_str source, ocf_str target)
     {
         return strstr(source.data, target.data) != NULL;
     }
@@ -510,11 +510,11 @@
      * @param count     If non‑NULL, receives the number of tokens produced.
      * @return Pointer to dynamically allocated array of cstr tokens.
      */
-    static inline ocf_cstr *ocf_cstr_split(ocf_cstr source, char delimiter, size_t *count)
+    static inline ocf_str *ocf_str_split(ocf_str source, char delimiter, size_t *count)
     {
         size_t capacity = 4;
         size_t length = 0;
-        ocf_cstr *result = allocate(ocf_cstr, capacity);
+        ocf_str *result = ocf_alloc(ocf_str, capacity);
 
         char* token = strtok(source.data, delimiter);
         while (token != NULL)
@@ -522,10 +522,10 @@
             if (length >= capacity)
             {
                 capacity *= 2;
-                result = (ocf_cstr *)realloc(result, capacity * sizeof(ocf_cstr));
+                result = (ocf_str *)realloc(result, capacity * sizeof(ocf_str));
             }
-            ocf_cstr_init(&result[length]);
-            ocf_cstr_append(&result[length], token);
+            ocf_str_init(&result[length]);
+            ocf_str_append(&result[length], token);
             length++;
             token = strtok(NULL, delimiter);
         }
@@ -544,10 +544,10 @@
      * @param length Number of characters to include.
      * @return New cstr with the requested slice.
      */
-    static inline ocf_cstr ocf_cstr_substring(ocf_cstr source, size_t start, size_t length)
+    static inline ocf_str ocf_str_substring(ocf_str source, size_t start, size_t length)
     {
-        ocf_cstr result;
-        result.data = allocate(char, length + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, length + 1);
         strncpy(result.data, source.data + start, length);
         result.data[length] = '\0';
         result.length = length;
@@ -563,10 +563,10 @@
      * @param source String to reverse.
      * @return Reversed copy of @p source.
      */
-    static inline ocf_cstr ocf_cstr_reverse(ocf_cstr source)
+    static inline ocf_str ocf_str_reverse(ocf_str source)
     {
-        ocf_cstr result;
-        result.data = allocate(char, source.length + 1);
+        ocf_str result;
+        result.data = ocf_alloc(char, source.length + 1);
         for (size_t i = 0; i < source.length; i++)
             result.data[i] = source.data[source.length - 1 - i];
         result.data[source.length] = '\0';
@@ -588,7 +588,7 @@
      * @param substring Null‑terminated substring to insert.
      * @param position  Insertion index (0 = beginning).
      */
-    static inline void ocf_cstr_insertBE(ocf_cstr *source, char* substring, size_t position)
+    static inline void ocf_str_insertBE(ocf_str *source, char* substring, size_t position)
     {
         if (position > source->length)
             position = source->length;
@@ -615,9 +615,9 @@
      * @param source    Pointer to the string to modify.
      * @param substring Null‑terminated substring to insert.
      */
-    static inline void ocf_cstr_insertB(ocf_cstr *source, char* substring)
+    static inline void ocf_str_insertB(ocf_str *source, char* substring)
     {
-        ocf_cstr_insertBE(source, substring, 0);
+        ocf_str_insertBE(source, substring, 0);
     }
 
     // Insert End
@@ -631,12 +631,12 @@
      * @param source    Pointer to the string to modify.
      * @param substring Null‑terminated substring to insert.
      */
-    static inline void ocf_cstr_insertE(ocf_cstr *source, char* substring)
+    static inline void ocf_str_insertE(ocf_str *source, char* substring)
     {
-        ocf_cstr_insertBE(source, substring, source->length);
+        ocf_str_insertBE(source, substring, source->length);
     }
 
-    static inline size_t ocf_cstr_where(ocf_cstr strInput, char ch)
+    static inline size_t ocf_str_where(ocf_str strInput, char ch)
     {
         for (size_t index = 0; index < strInput.length; index++)
         {
@@ -648,7 +648,7 @@
         return -1; // Not found
     }
 
-    static inline bool ocf_cstr_exist(ocf_cstr strInput, char ch)
+    static inline bool ocf_str_exist(ocf_str strInput, char ch)
     {
         for (size_t index = 0; index < strInput.length; index++)
         {
@@ -660,12 +660,12 @@
         return false; // Not found
     }
 
-    static inline bool ocf_cstr_exist(ocf_cstr strInput, char* substr)
+    static inline bool ocf_str_exist(ocf_str strInput, char* substr)
     {
         return strstr(strInput.data, substr) != NULL;
     }
 
-    static inline bool ocf_cstr_exist(ocf_cstr strInput, ocf_cstr substr)
+    static inline bool ocf_str_exist(ocf_str strInput, ocf_str substr)
     {
         return strstr(strInput.data, substr.data) != NULL;
     }

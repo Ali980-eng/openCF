@@ -14,7 +14,7 @@
  *          Covers uint8, int8, uint16, int16, uint32, int32, uint64, int64
  */
 
-TEST_MAIN(meta_cgen: bitUtilitys);
+TEST_MAIN(cgen: bitUtilitys);
 
   // ==================== 8-BIT UNSIGNED INTEGER TESTS ====================
   // Testing: get_u8bit, set_u8bit, reset_u8bit, toggle_u8bit, xchg_u8bit, count_u8bit

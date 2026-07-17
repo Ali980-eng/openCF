@@ -14,7 +14,7 @@
 #if defined(OPENCF_FOR_GNU)
 
     /// @brief An array of characters representing the values of a B27 variable.
-    const char* ocf_B27Chars[27] = {
+    const char* ocf_b27_chars[27] = {
         "(-D)", "(-C)", "(-B)", "(-A)",
         "(-9)", "(-8)", "(-7)", "(-6)",
         "(-5)", "(-4)", "(-3)", "(-2)",
@@ -43,16 +43,16 @@
     static inline const char* ocf_b27_get(OCF_B27 value) {
         if(value > 13 || value < -13) {
             printf("Overflow/Underflow error");
-            return ocf_B27Chars[13];
+            return ocf_b27_chars[13];
         }
-        if(value < 0) return ocf_B27Chars[-1 * value];
-        else return ocf_B27Chars[value + 13];
+        if(value < 0) return ocf_b27_chars[-1 * value];
+        else return ocf_b27_chars[value + 13];
     }
 
 #else
 
     /// @brief An array of characters representing the values of a B27 variable.
-    const char* B27Chars[27] = {
+    const char* b27_chars[27] = {
         "(-D)", "(-C)", "(-B)", "(-A)",
         "(-9)", "(-8)", "(-7)", "(-6)",
         "(-5)", "(-4)", "(-3)", "(-2)",
@@ -81,10 +81,10 @@
     static inline const char* b27_get(B27 value) {
         if(value > 13 || value < -13) {
             printf("Overflow/Underflow error");
-            return B27Chars[13];
+            return b27_chars[13];
         }
-        if(value < 0) return B27Chars[-1 * value];
-        else return B27Chars[value + 13];
+        if(value < 0) return b27_chars[-1 * value];
+        else return b27_chars[value + 13];
     }
 
 #endif

@@ -13,7 +13,7 @@
         size_t line;
     } ocf_error;
 
-    static inline ocf_error ocf_errInit() {
+    static inline ocf_error ocf_error_init() {
         ocf_error err;
         err.name = NULL;
         err.description = NULL;
@@ -23,7 +23,7 @@
         return err;
     }
 
-    static inline void ocf_errPrint(ocf_error err) {
+    static inline void ocf_error_print(ocf_error err) {
         printf("\n");
         printf("------------\n");
         printf("<<< ERROR >>>\n");
@@ -40,7 +40,7 @@
         printf("------------\n");
     }
 
-    static inline ocf_error ocf_errIndexing(char* description) {
+    static inline ocf_error ocf_error_indexing(char* description) {
         ocf_error err;
         err.name = "Indexing Error";
         err.description = description;
@@ -50,7 +50,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errDeclaration(char* description) {
+    static inline ocf_error ocf_error_declaration(char* description) {
         ocf_error err;
         err.name = "Declaration Error";
         err.description = description;
@@ -60,7 +60,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errConstruction(char* description) {
+    static inline ocf_error ocf_error_construction(char* description) {
         ocf_error err;
         err.name = "Construction Error";
         err.description = description;
@@ -70,7 +70,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errBadInput(char* description) {
+    static inline ocf_error ocf_error_bad_input(char* description) {
         ocf_error err;
         err.name = "Bad Input";
         err.description = description;
@@ -80,7 +80,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errUndefinedBehavior(char* description) {
+    static inline ocf_error ocf_error_undefined_behavior(char* description) {
         ocf_error err;
         err.name = "Undefined Behavior";
         err.description = description;
@@ -90,7 +90,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errInvalidArgument(char* description) {
+    static inline ocf_error ocf_error_invalid_argument(char* description) {
         ocf_error err;
         err.name = "Invalid Argument";
         err.description = description;
@@ -100,7 +100,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errOutOfRange(char* description) {
+    static inline ocf_error ocf_error_out_of_range(char* description) {
         ocf_error err;
         err.name = "Out Of Range";
         err.description = description;
@@ -110,7 +110,7 @@
         return err;
     }
 
-    static inline ocf_error ocf_errInternalProblem(char* description) {
+    static inline ocf_error ocf_error_internal_problem(char* description) {
         ocf_error err;
         err.name = "Internal Problem";
         err.description = description;
@@ -120,7 +120,7 @@
         return err;
     }
 
-    static void ocf_errFree(ocf_error* self) {
+    static void ocf_error_free(ocf_error* self) {
         free(self->name);
         free(self->description);
         free(self->file);
@@ -137,7 +137,7 @@
         size_t line;
     } cerror;
 
-    static inline cerror errInit() {
+    static inline cerror error_init() {
         cerror err;
         err.name = NULL;
         err.description = NULL;
@@ -147,7 +147,7 @@
         return err;
     }
 
-    static inline void errPrint(cerror err) {
+    static inline void error_print(cerror err) {
         printf("\n");
         printf("------------\n");
         printf("<<< ERROR >>>\n");
@@ -164,7 +164,7 @@
         printf("------------\n");
     }
 
-    static inline cerror errIndexing(char* description) {
+    static inline cerror error_indexing(char* description) {
         cerror err;
         err.name = "Indexing Error";
         err.description = description;
@@ -174,7 +174,7 @@
         return err;
     }
 
-    static inline cerror errDeclaration(char* description) {
+    static inline cerror error_declaration(char* description) {
         cerror err;
         err.name = "Declaration Error";
         err.description = description;
@@ -184,7 +184,7 @@
         return err;
     }
 
-    static inline cerror errConstruction(char* description) {
+    static inline cerror error_construction(char* description) {
         cerror err;
         err.name = "Construction Error";
         err.description = description;
@@ -194,7 +194,7 @@
         return err;
     }
 
-    static inline cerror errBadInput(char* description) {
+    static inline cerror error_bad_input(char* description) {
         cerror err;
         err.name = "Bad Input";
         err.description = description;
@@ -204,7 +204,7 @@
         return err;
     }
 
-    static inline cerror errUndefinedBehavior(char* description) {
+    static inline cerror error_undefined_behavior(char* description) {
         cerror err;
         err.name = "Undefined Behavior";
         err.description = description;
@@ -214,7 +214,7 @@
         return err;
     }
 
-    static inline cerror errInvalidArgument(char* description) {
+    static inline cerror error_invalid_argument(char* description) {
         cerror err;
         err.name = "Invalid Argument";
         err.description = description;
@@ -224,7 +224,7 @@
         return err;
     }
 
-    static inline cerror errOutOfRange(char* description) {
+    static inline cerror error_out_of_range(char* description) {
         cerror err;
         err.name = "Out Of Range";
         err.description = description;
@@ -234,7 +234,7 @@
         return err;
     }
 
-    static inline cerror errInternalProblem(char* description) {
+    static inline cerror error_internal_problem(char* description) {
         cerror err;
         err.name = "Internal Problem";
         err.description = description;
@@ -244,7 +244,7 @@
         return err;
     }
 
-    static void errFree(cerror* self) {
+    static void error_free(cerror* self) {
         free(self->name);
         free(self->description);
         free(self->file);

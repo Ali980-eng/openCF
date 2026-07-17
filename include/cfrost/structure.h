@@ -25,29 +25,32 @@
         #define ocf_tab'\t'
 
         /**
-         * @def ocf_main_exit
+         * @def ocf_main_start_and_exit
          * @brief Define a minimal main function that immediately returns 0.
          */
-        #define ocf_main_exit int main() { return 0; }
+        #define ocf_main_start_and_exit int main() { return 0; }
 
         /**
-         * @def ocf_main
+         * @def ocf_command_main
          * @brief Define a main function with argc/argv parameters.
          */
-        #define ocf_main int main(int argc, char* argv[])
+        #define ocf_command_main int main(int argc, char* argv[])
 
         /**
-         * @def ocfMain
+         * @def ocf_empty_main
          * @brief Define a main function without parameters.
          */
-        #define ocfMain int main()
+        #define ocf_empty_main int main()
+
+        #define ocf_main \
+            int main
 
         /**
-         * @def ocf_ret
+         * @def ocf_exit
          * @brief Return a value from main and close the function body.
          * @param retval return value.
          */
-        #define ocf_ret(retval) return (int)retval;
+        #define ocf_exit(retval) return (int)retval;
 
         /**
          * @def ocf_procedure
@@ -248,7 +251,17 @@
             #include <unordered_map>
             #include <initializer_list>
 
+            #define ocf_enable_procedure_if(condition, name) \
+                std::enable_if_t<condition, void> name(void)
+            
             namespace ocf {
+            
+                template <typename T1, typename T2>
+                using enable_arithmetic = std::enable_if<std::is_arithmetic<T1>::value, T2>::type;
+                
+                template <bool T1, typename T2>
+                using enable_if = std::enable_if_t<T1, T2>;
+
                 /**
                  * @typedef str
                  * @brief Alias for std::string.
@@ -289,10 +302,13 @@
                  */
                 template<typename T>
                 using initList = std::initializer_list<T>;
+            
             }
+
         #endif // __cplusplus
 
     #else
+
         /**
          * @def newl
          * @brief Newline character constant.
@@ -306,10 +322,10 @@
         #define tab '\t'
 
         /**
-         * @def main_exit
+         * @def main_start_and_exit
          * @brief Define a minimal main function that immediately returns 0.
          */
-        #define main_exit int main() { return 0; }
+        #define main_start_and_exit int main() { return 0; }
 
         /**
          * @def command_main
@@ -321,14 +337,17 @@
          * @def main_func
          * @brief Define a main function without parameters.
          */
-        #define main_func int main()
+        #define empty_main int main()
+
+        #define main_f \
+            int main
 
         /**
-         * @def ret_i
+         * @def exit
          * @brief Return a value from main and close the function body.
          * @param retval return value.
          */
-        #define ret_i(retval) return (int)retval;
+        #define exit(retval) return (int)retval;
 
         /**
          * @def procedure
@@ -529,47 +548,62 @@
             #include <unordered_map>
             #include <initializer_list>
 
-            /**
-             * @typedef str
-             * @brief Alias for std::string.
-             */
-            using str = std::string;
+            #define enable_procedure_if(condition, name) \
+                std::enable_if_t<condition, void> name(void)
+            
+            namespace ocf {
+            
+                template <typename T1, typename T2>
+                using enable_arithmetic = std::enable_if<std::is_arithmetic<T1>::value, T2>::type;
+                
+                template <bool T1, typename T2>
+                using enable_if = std::enable_if_t<T1, T2>;
 
-            /**
-             * @typedef func
-             * @brief Alias for std::function<T>.
-             */
-            template<typename T>
-            using func = std::function<T>;
+                /**
+                 * @typedef str
+                 * @brief Alias for std::string.
+                 */
+                using str = std::string;
 
-            /**
-             * @typedef vec
-             * @brief Alias for std::vector<T>.
-             */
-            template<typename T>
-            using vec = std::vector<T>;
+                /**
+                 * @typedef func
+                 * @brief Alias for std::function<T>.
+                 */
+                template<typename T>
+                using func = std::function<T>;
 
-            /**
-             * @typedef que
-             * @brief Alias for std::queue<T>.
-             */
-            template<typename T>
-            using que = std::queue<T>;
+                /**
+                 * @typedef vec
+                 * @brief Alias for std::vector<T>.
+                 */
+                template<typename T>
+                using vec = std::vector<T>;
 
-            /**
-             * @typedef hash_map
-             * @brief Alias for std::unordered_map<T, U>.
-             */
-            template<typename T, typename U>
-            using hash_map = std::unordered_map<T, U>;
+                /**
+                 * @typedef que
+                 * @brief Alias for std::queue<T>.
+                 */
+                template<typename T>
+                using que = std::queue<T>;
 
-            /**
-             * @typedef initList
-             * @brief Alias for std::initializer_list<T>.
-             */
-            template<typename T>
-            using initList = std::initializer_list<T>;
+                /**
+                 * @typedef hash_map
+                 * @brief Alias for std::unordered_map<T, U>.
+                 */
+                template<typename T, typename U>
+                using hash_map = std::unordered_map<T, U>;
+
+                /**
+                 * @typedef initList
+                 * @brief Alias for std::initializer_list<T>.
+                 */
+                template<typename T>
+                using initList = std::initializer_list<T>;
+            
+            }
 
         #endif // __cplusplus
+    
     #endif
+
 #endif // OPENCF___CFROST___MICROS_STRUCTURE_H

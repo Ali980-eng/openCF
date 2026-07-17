@@ -14,7 +14,7 @@
 #if defined(OPENCF_FOR_GNU)
 
     /// @brief An array of characters representing the values of a UB27 variable.
-    const char ocf_UB27Chars[27] = {
+    const char ocf_ub27_chars[27] = {
         '0', '1', '2', '3', '4', '5',
         '6', '7', '8', '9', 'A', 'B',
         'C', 'D', 'E', 'F', 'G', 'H',
@@ -41,15 +41,15 @@
     static inline char ocf_ub27_get(OCF_UB27 value) {
         if(value >= 27) {
             printf("Overflow error");
-            return ocf_UB27Chars[26];
+            return ocf_ub27_chars[26];
         }
-        return ocf_UB27Chars[value];
+        return ocf_ub27_chars[value];
     }
 
 #else
 
     /// @brief An array of characters representing the values of a UB27 variable.
-    const char UB27Chars[27] = {
+    const char ub27_chars[27] = {
         '0', '1', '2', '3', '4', '5',
         '6', '7', '8', '9', 'A', 'B',
         'C', 'D', 'E', 'F', 'G', 'H',
@@ -76,9 +76,9 @@
     static inline char ub27_get(UB27 value) {
         if(value >= 27) {
             printf("Overflow error");
-            return UB27Chars[26];
+            return ub27_chars[26];
         }
-        return UB27Chars[value];
+        return ub27_chars[value];
     }
 
 #endif
