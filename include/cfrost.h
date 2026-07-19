@@ -43,9 +43,11 @@
     #include "cfrost/object_data.h"
     #include "cfrost/structure.h"
     #include "cfrost/test.h"
+    #include "cfrost/cgen.h"
 #else
     #include "cfrost/structure.h"
     #include "cfrost/test.h"
+    #include "cfrost/cgen.h"
 #endif // cobject_data_micros
 
 #endif // OPENCF___CFROST_H

@@ -12,6 +12,7 @@
      */
 
     #if defined(OPENCF_FOR_GNU)
+    
         /**
          * @def ocf_newl
          * @brief Newline character constant.
@@ -477,7 +478,7 @@
              * @def object
              * @brief Alias for beginning a struct definition in C.
              */
-            #define object typedef struct 
+            #define object typedef struct
 
             /**
              * @def cenum
