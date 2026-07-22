@@ -12,14 +12,13 @@
 
 #include <stdlib.h>
 #include "dynamic.h"
-#include "cfrost/structure.h"
 
 #ifndef METACORE___CGEN___DDT_QUEUE_H
 #define METACORE___CGEN___DDT_QUEUE_H
 
 #if defined(OPENCF_FOR_GNU)
 
-    ocf_object ocf_queue
+    typedef struct ocf_queue
     {
         size_t size;
         size_t capacity;
@@ -84,7 +83,7 @@
 
 #else
 
-    object cqueue
+    typedef struct cqueue
     {
         size_t size;
         size_t capacity;

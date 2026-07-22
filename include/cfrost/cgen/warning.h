@@ -7,7 +7,7 @@
 
     size_t ocf_warning_counter = 0;
 
-    ocf_object ocf_warning {
+    typedef struct ocf_warning {
         char* name;
         char* description;
         char* file;
@@ -153,7 +153,7 @@
 
     size_t cwarningCounter = 0;
 
-    object cwarning {
+    typedef struct cwarning {
         char* name;
         char* description;
         char* file;

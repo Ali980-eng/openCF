@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "cfrost/structure.h"
 
 #ifndef METACORE___CGEN___STRING_H
 #define METACORE___CGEN___STRING_H
@@ -39,7 +38,7 @@
         return NULL;
         
         // Free old memory and allocate fresh 1 byte for empty string
-        char* temp = ocf_alloc(char, 1);
+        char* temp = (char *) malloc( 1);
         if (temp != NULL) {
             temp[0] = '\0';
             free(value);
@@ -206,7 +205,7 @@
         return indices;
     }
 
-    ocf_object ocf_str
+    typedef struct ocf_str
     {
         char* data;
         size_t length;
@@ -227,7 +226,7 @@
     {
         strInput->capacity = 16;
         strInput->length = 0;
-        strInput->data = ocf_alloc(char, strInput->capacity);
+        strInput->data = (char *) malloc( strInput->capacity);
         strInput->data[0] = '\0';
     }
 
@@ -354,7 +353,7 @@
     static inline ocf_str ocf_str_lower(ocf_str source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -375,7 +374,7 @@
     static inline ocf_str ocf_str_upper(ocf_str source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -398,7 +397,7 @@
     static inline ocf_str ocf_str_append_cstr(ocf_str destination, ocf_str source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, destination.length + source.length + 1);
+        result.data = (char *) malloc( destination.length + source.length + 1);
             if(destination.capacity <= destination.length + source.length) {
             result.capacity = destination.capacity + source.length + source.length / 2;
         } else {
@@ -423,7 +422,7 @@
     static inline ocf_str ocf_str_append_string(ocf_str destination, char* source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, destination.length + strlen(source) + 1);
+        result.data = (char *) malloc( destination.length + strlen(source) + 1);
         if(destination.capacity <= destination.length + strlen(source)) {
             result.capacity = destination.capacity + strlen(source) + strlen(source) / 2;
         } else {
@@ -448,7 +447,7 @@
     static inline ocf_str ocf_str_append_char(ocf_str destination, char source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, destination.length + 2);
+        result.data = (char *) malloc( destination.length + 2);
         strcpy(result.data, destination.data);
         result.capacity = destination.capacity + 2;
         result.data[destination.length] = source;
@@ -547,7 +546,7 @@
     static inline ocf_str ocf_str_substring(ocf_str source, size_t start, size_t length)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, length + 1);
+        result.data = (char *) malloc( length + 1);
         strncpy(result.data, source.data + start, length);
         result.data[length] = '\0';
         result.length = length;
@@ -566,7 +565,7 @@
     static inline ocf_str ocf_str_reverse(ocf_str source)
     {
         ocf_str result;
-        result.data = ocf_alloc(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         for (size_t i = 0; i < source.length; i++)
             result.data[i] = source.data[source.length - 1 - i];
         result.data[source.length] = '\0';
@@ -702,7 +701,7 @@
         return NULL;
         
         // Free old memory and allocate fresh 1 byte for empty string
-        char* temp = allocate(char, 1);
+        char* temp = (char *) malloc( 1);
         if (temp != NULL) {
             temp[0] = '\0';
             free(value);
@@ -854,7 +853,7 @@
     static int *locations(const char * strInput, char ch, size_t out_count)
     {
         size_t char_count = count_char(strInput, ch);
-        int *indices = allocate(int, char_count);
+        int *indices = (int *) malloc( char_count);
         size_t index = 0;
         size_t found_index = 0;
         while (strInput[index] != '\0')
@@ -869,7 +868,7 @@
         return indices;
     }
 
-    object cstr
+    typedef struct cstr
     {
         char* data;
         size_t length;
@@ -890,7 +889,7 @@
     {
         strInput->capacity = 16;
         strInput->length = 0;
-        strInput->data = allocate(char, strInput->capacity);
+        strInput->data = (char *) malloc( strInput->capacity);
         strInput->data[0] = '\0';
     }
 
@@ -1017,7 +1016,7 @@
     static cstr cstr_lower(cstr source)
     {
         cstr result;
-        result.data = allocate(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -1038,7 +1037,7 @@
     static cstr cstr_upper(cstr source)
     {
         cstr result;
-        result.data = allocate(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         strcpy(result.data, source.data);
         result.length = source.length;
         result.capacity = source.capacity;
@@ -1061,7 +1060,7 @@
     static cstr cstr_append_cstr(cstr destination, cstr source)
     {
         cstr result;
-        result.data = allocate(char, destination.length + source.length + 1);
+        result.data = (char *) malloc( destination.length + source.length + 1);
             if(destination.capacity <= destination.length + source.length) {
             result.capacity = destination.capacity + source.length + source.length / 2;
         } else {
@@ -1086,7 +1085,7 @@
     static cstr cstr_append_string(cstr destination, char* source)
     {
         cstr result;
-        result.data = allocate(char, destination.length + strlen(source) + 1);
+        result.data = (char *) malloc( destination.length + strlen(source) + 1);
         if(destination.capacity <= destination.length + strlen(source)) {
             result.capacity = destination.capacity + strlen(source) + strlen(source) / 2;
         } else {
@@ -1111,7 +1110,7 @@
     static cstr cstr_append_char(cstr destination, char source)
     {
         cstr result;
-        result.data = allocate(char, destination.length + 2);
+        result.data = (char *) malloc( destination.length + 2);
         strcpy(result.data, destination.data);
         result.capacity = destination.capacity + 2;
         result.data[destination.length] = source;
@@ -1177,7 +1176,7 @@
     {
         size_t capacity = 4;
         size_t length = 0;
-        cstr *result = allocate(cstr, capacity);
+        cstr *result = (cstr *) malloc(capacity);
 
         char* token = strtok(source.data, delimiter);
         while (token != NULL)
@@ -1210,7 +1209,7 @@
     static cstr cstr_substring(cstr source, size_t start, size_t length)
     {
         cstr result;
-        result.data = allocate(char, length + 1);
+        result.data = (char *) malloc( length + 1);
         strncpy(result.data, source.data + start, length);
         result.data[length] = '\0';
         result.length = length;
@@ -1229,7 +1228,7 @@
     static cstr cstr_reverse(cstr source)
     {
         cstr result;
-        result.data = allocate(char, source.length + 1);
+        result.data = (char *) malloc( source.length + 1);
         for (size_t i = 0; i < source.length; i++)
             result.data[i] = source.data[source.length - 1 - i];
         result.data[source.length] = '\0';

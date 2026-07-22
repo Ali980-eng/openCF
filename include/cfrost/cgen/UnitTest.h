@@ -27,7 +27,7 @@
 
     size_t ocf_test_counter = 0;
 
-    ocf_object OCF_TEST {
+    typedef struct OCF_TEST {
         char* name;
         char* description;
         size_t num;
@@ -322,7 +322,7 @@
                         details, seplen, sepch);
     }
 
-    ocf_object ocf_test_stream {
+    typedef struct ocf_test_stream {
         bool details;
         unsigned int seplen;
         char sepch;
@@ -509,7 +509,7 @@
 
     size_t ctestCounter = 0;
 
-    object CTEST {
+    typedef struct CTEST {
         char* name;
         char* description;
         size_t num;
@@ -804,7 +804,7 @@
                         details, seplen, sepch);
     }
 
-    object test_stream {
+    typedef struct test_stream {
         bool details;
         unsigned int seplen;
         char sepch;

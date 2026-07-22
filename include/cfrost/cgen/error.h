@@ -5,7 +5,7 @@
 
 #if defined(OPENCF_FOR_GNU)
 
-    ocf_object ocf_error {
+    typedef struct ocf_error {
         char* name;
         char* description;
         char* file;
@@ -129,7 +129,7 @@
 
 #else
 
-    object {
+    typedef struct {
         char* name;
         char* description;
         char* file;

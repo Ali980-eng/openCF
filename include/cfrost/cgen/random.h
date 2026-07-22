@@ -13,11 +13,9 @@
  * @date 2024-06
  */
 
-#include "cfrost/structure.h"
-
 #if defined(OPENCF_FOR_GNU)
 
-    ocf_object ocf_random
+    typedef struct ocf_random
     {
         int core;
         double state;
@@ -40,7 +38,7 @@
 
 #else
 
-    object crandom
+    typedef struct crandom
     {
         int core;
         double state;

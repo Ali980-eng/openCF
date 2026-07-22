@@ -17,7 +17,7 @@
 
 #if defined(OPENCF_FOR_GNU)
     
-    ocf_object ocf_stack
+    typedef struct ocf_stack
     {
         size_t size;
         size_t capacity;
@@ -77,7 +77,7 @@
     }
 #else
 
-    object cstack
+    typedef struct cstack
     {
         size_t size;
         size_t capacity;

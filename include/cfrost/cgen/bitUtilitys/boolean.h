@@ -35,7 +35,6 @@
 #include "get_bit.h"
 #include "reset_bit.h"
 #include "set_bit.h"
-#include "cfrost/structure.h"
 
 #ifndef METACORE___CGEN___BITUTILITYS_CBOOL_8_H
 #define METACORE___CGEN___BITUTILITYS_CBOOL_8_H
@@ -47,7 +46,7 @@
         ///          ocf_bool values, one for each bit position (0-7). This allows efficient storage
         ///          and manipulation of up to 8 independent ocf_bool values in a single byte.
         /// @members value The underlying 8-bit unsigned integer storing the ocf_bool flags
-        ocf_object { uint8_t value; } ocf_bool;
+        typedef struct { uint8_t value; } ocf_bool;
 
         /// @brief Set or reset the ocf_bool value at position 0
         /// @param current The current ocf_bool structure
@@ -113,7 +112,7 @@
         ///          cbool_8 values, one for each bit position (0-7). This allows efficient storage
         ///          and manipulation of up to 8 independent cbool_8 values in a single byte.
         /// @members value The underlying 8-bit unsigned integer storing the cbool_8 flags
-        object { uint8_t value; } cbool_8;
+        typedef struct { uint8_t value; } cbool_8;
 
         /// @brief Set or reset the cbool_8 value at position 0
         /// @param current The current cbool_8 structure

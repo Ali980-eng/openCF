@@ -16,6 +16,8 @@
 #ifndef METACORE___CGEN_H
 #define METACORE___CGEN_H
 
+#include "structure.h"
+
 #include "cgen/IOUtilitys.h"
 #include "cgen/UnitTest.h"
 #include "cgen/warning.h"
@@ -282,7 +284,7 @@
         system.csys_tnum = 0;
         system.csys_w = NULL;
         system.csys_wnum = 0;
-        system.csys_e = errInit();
+        system.csys_e = error_init();
         system.retVal = false;
         return system;
     }
@@ -304,7 +306,7 @@
         }
         
         if (self.csys_test == NULL) {
-            self.csys_e = errInit();
+            self.csys_e = error_init();
             self.csys_e.name = (char*)"Memory Allocation Error";
             self.csys_e.description = (char*)"Failed to allocate memory for test";
             self.csys_e.file = __FILE__;
@@ -375,7 +377,7 @@
         }
         
         if (self.csys_w == NULL) {
-            self.csys_e = errInit();
+            self.csys_e = error_init();
             self.csys_e.name = (char*)"Memory Allocation Error";
             self.csys_e.description = (char*)"Failed to allocate memory for warning";
             return self;

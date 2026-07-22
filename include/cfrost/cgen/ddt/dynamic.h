@@ -8,7 +8,6 @@
  * @date 2024-06
  */
 
-#include "cfrost/structure.h"
 #include <stdexcpt.h>
 #include <stdbool.h>
 #include <limits.h>
@@ -28,7 +27,7 @@
             dyn_enum_long = 6,
             dyn_enum_double = 7;
 
-        ocf_object ocf_dynamic
+        typedef struct ocf_dynamic
         {
             uint8_t id;
             double value;
@@ -449,7 +448,7 @@
             dyn_enum_long = 6,
             dyn_enum_double = 7;
 
-        object cdynamic
+        typedef struct cdynamic
         {
             uint8_t id;
             double value;
